@@ -56,7 +56,7 @@ public class GameControl : MonoBehaviour {
             player1.GetComponent<FollowThePath>().waypoints.Length)
         {
             whoWinsTextShadow.gameObject.SetActive(true);
-            whoWinsTextShadow.GetComponent<Text>().text = "Kontol Merah Wins, EWEK";
+            whoWinsTextShadow.GetComponent<Text>().text = "Merah Menang";
             gameOver = true;
         }
 
@@ -66,7 +66,7 @@ public class GameControl : MonoBehaviour {
             whoWinsTextShadow.gameObject.SetActive(true);
             player1MoveText.gameObject.SetActive(false);
             player2MoveText.gameObject.SetActive(false);
-            whoWinsTextShadow.GetComponent<Text>().text = "Kontol Kuning Wins, EWEK";
+            whoWinsTextShadow.GetComponent<Text>().text = "Kuning Menang";
             gameOver = true;
         }
     }
