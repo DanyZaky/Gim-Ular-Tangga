@@ -8,7 +8,8 @@ public class Dice : MonoBehaviour {
     private SpriteRenderer rend;
     private bool coroutineAllowed = true;
 
-    private static GameObject diceText;
+    private GameObject diceText;
+    public GameControl _gc;
 
     // Use this for initialization
     private void Start () {
@@ -20,8 +21,8 @@ public class Dice : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        if (!GameControl.gameOver && coroutineAllowed)
-            StartCoroutine("RollTheDice");
+        if (!_gc.gameOver && coroutineAllowed)
+            StartCoroutine(RollTheDice());
     }
 
     private IEnumerator RollTheDice()
@@ -38,9 +39,9 @@ public class Dice : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
         }
 
-        GameControl.diceSideThrown = randomDiceSide + 1;
+        _gc.diceSideThrown = randomDiceSide + 1;
         
-        GameControl.MovePlayer();
+        _gc.MovePlayer();
 
         coroutineAllowed = true;
     }
