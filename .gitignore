@@ -1,11 +1,11 @@
 ### ---------------[ Unity generated ]------------------ ###
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-UnityGenerated/
-Assets/AssetStoreTools*
+Snake Ladder Game/[Ll]ibrary/
+Snake Ladder Game/[Tt]emp/
+Snake Ladder Game/[Oo]bj/
+Snake Ladder Game/[Bb]uild/
+Snake Ladder Game/[Bb]uilds/
+Snake Ladder Game/UnityGenerated/
+Snake Ladder Game/Assets/AssetStoreTools*
 
 # --- Potential OS generated files --- #
 .DS_Store*
