@@ -70,8 +70,10 @@
     <Compile Include="Assets\Script\GameplayController.cs" />
     <Compile Include="Assets\Script\MainMenuController.cs" />
     <Compile Include="Assets\Script\Petak.cs" />
+    <Compile Include="Assets\Script\SoalController.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Media\Soal\soal7.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />

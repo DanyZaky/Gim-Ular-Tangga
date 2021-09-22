@@ -667,8 +667,10 @@
     <Compile Include="Assets\Script\GameplayController.cs" />
     <Compile Include="Assets\Script\MainMenuController.cs" />
     <Compile Include="Assets\Script\Petak.cs" />
+    <Compile Include="Assets\Script\SoalController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Media\Soal\soal7.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
