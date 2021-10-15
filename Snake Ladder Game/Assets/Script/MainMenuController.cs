@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuController : UIController
 {
     public InputField _iField;
     public bool isNameAllowed;
-    public GameObject warningWindow;
+    public GameObject warningWindow, inputWindow;
 
     private void Update()
     {
@@ -18,31 +18,30 @@ public class MainMenuController : MonoBehaviour
 
     public void ButtonMulai()
     {
-        print(_iField.text);
         if (isNameAllowed)
         {
+            print(_iField.text);
             PlayerPrefs.SetString("PlayerName", _iField.text);
-            LoadScene();
+            LoadScene("GameplayScene");
         }        
     }
 
     void NicknameCheck()
     {
-        if (_iField.text.Length <= 12)
+        if (inputWindow.activeInHierarchy)
         {
-            isNameAllowed = true;
-            warningWindow.SetActive(false);
-        }
-        else
-        {
-            isNameAllowed = false;
-            warningWindow.SetActive(true);
-        }
+            if (_iField.text.Length <= 12)
+            {
+                isNameAllowed = true;
+                warningWindow.SetActive(false);
+            }
+            else
+            {
+                isNameAllowed = false;
+                warningWindow.SetActive(true);
+            }
+        }        
     }
 
-    private void LoadScene()
-    {
-        PlayerPrefs.SetString("NewScene", "GameplayScene");
-        SceneManager.LoadScene("LoadingScene");
-    }
+    
 }

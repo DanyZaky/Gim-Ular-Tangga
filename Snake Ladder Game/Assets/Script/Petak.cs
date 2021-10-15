@@ -5,8 +5,9 @@ using UnityEngine;
 public class Petak : MonoBehaviour
 {
     public bool isAnswered;
-    public bool isSnakeTile;
-    public bool isLadderTile;
+    public bool isLadder;
+    public bool isSnake;
+    public bool isAnswerCorrect;
 
-    public int indexDestination;
+    public int destinationIndex;    
 }

@@ -1,40 +1,55 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FollowThePath : MonoBehaviour {
 
+    public GameControl _gc;
     public Transform[] waypoints;
 
     [SerializeField]
     private float moveSpeed = 1f;
+    public int currentWaypointIndex;
 
-    [HideInInspector]
-    public int waypointIndex = 0;
-
-    public bool moveAllowed = false;
+    public bool isMoveAllowed = false;
+    public bool isForcedMove;
+    public bool wasForcedMove;
+    public int currentDestinationIndex;
 
 	// Use this for initialization
 	private void Start () {
-        transform.position = waypoints[waypointIndex].transform.position;
+        transform.position = new Vector2(-10, -3);
 	}
 	
 	// Update is called once per frame
 	private void Update () {
-        if (moveAllowed)
+        if (isMoveAllowed)
+        {
             Move();
-	}
+        }
+        if (isForcedMove)
+        {
+            ForcedMove();
+        }
+    }
 
     private void Move()
     {
-        if (waypointIndex <= waypoints.Length - 1)
+        if (currentWaypointIndex < waypoints.Length)
         {
             transform.position = Vector2.MoveTowards(transform.position,
-            waypoints[waypointIndex].transform.position,
+            waypoints[currentWaypointIndex].transform.position,
             moveSpeed * Time.deltaTime);
-
-            if (transform.position == waypoints[waypointIndex].transform.position)
+            if (transform.position == waypoints[currentWaypointIndex].transform.position)
             {
-                waypointIndex += 1;
+                currentWaypointIndex += 1;
             }
         }
+    }
+
+    void ForcedMove()
+    {
+        transform.position = Vector2.MoveTowards(transform.position,
+        waypoints[currentDestinationIndex - 1].transform.position,
+        moveSpeed * Time.deltaTime);
     }
 }

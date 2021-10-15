@@ -1,58 +1,140 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameControl : MonoBehaviour {
 
-    private GameObject winText, player;
+    private GameObject player;
     private FollowThePath _playerFollowPath;
-    public GameObject soalContainer;
+    private SoalController _soalController;
+
+    public Transform[] waypoints;
+    public GameObject soalContainer, winWindow;
+    public Petak currentCheckTile;
+    public TextMeshProUGUI textPoints;
+    public GameObject incorrectTile;
+    public GameObject correctTile;
+    public GameObject colorBoard;
 
     public int diceSideThrown = 0;
     public int playerStartWaypoint = 0;
+    public int playerEndWaypoint = 0;
+    public int points;
 
-    public bool gameOver = false;
+    public bool isGameOver = false;
 
     private void Awake()
     {
-        winText = GameObject.Find("WinText");
         player = GameObject.Find("Player");
-        _playerFollowPath = player.GetComponent<FollowThePath>();        
+        _playerFollowPath = player.GetComponent<FollowThePath>();
+        _soalController = soalContainer.GetComponent<SoalController>();
+        waypoints = _playerFollowPath.waypoints;
     }
 
     void Start ()
     {
-        _playerFollowPath.moveAllowed = false;
+        _playerFollowPath.isMoveAllowed = false;        
     }
 
     void Update()
     {
-        if (_playerFollowPath.waypointIndex > playerStartWaypoint + diceSideThrown)
-        {
-            _playerFollowPath.moveAllowed = false;
-            playerStartWaypoint = _playerFollowPath.waypointIndex - 1;
-        }
+        MovementChecker();        
+    }
 
-        //WIN CONDITION
-        if (_playerFollowPath.waypointIndex == _playerFollowPath.waypoints.Length)
+    void MovementChecker()
+    {
+        textPoints.text = "Skor: " + points;
+        playerEndWaypoint = playerStartWaypoint + diceSideThrown;
+        if (playerEndWaypoint == 0)
         {
-            winText.GetComponent<Text>().text = "Kamu Menang";
-            gameOver = true;
+            diceSideThrown = 0;
         }
+        else if (playerEndWaypoint >= waypoints.Length)
+        {
+            playerEndWaypoint = waypoints.Length;
+            EndWaypoint();
+            if (currentCheckTile.isAnswered && isGameOver)
+            {
+                CalculateStageClear();
+            }
+        }
+        else
+        {
+            EndWaypoint();
+        }
+    }
 
-        //SOAL CONTROLLER
-        if (_playerFollowPath.waypointIndex == 7)
+    void EndWaypoint()
+    {
+        if (_playerFollowPath.transform.position == waypoints[playerEndWaypoint - 1].transform.position)
+        {
+            _playerFollowPath.isMoveAllowed = false;
+            _playerFollowPath.isForcedMove = false;
+            diceSideThrown = 0;
+            playerStartWaypoint = playerEndWaypoint;
+            currentCheckTile = waypoints[playerEndWaypoint - 1].GetComponent<Petak>();
+            CheckSoal();
+        }
+    }
+
+    public void CheckTile()
+    {
+        if (currentCheckTile.isLadder && currentCheckTile.isAnswerCorrect && currentCheckTile.isAnswered)
+        {
+            ForceMovePlayer(currentCheckTile.destinationIndex);
+        }
+        if (currentCheckTile.isSnake && !currentCheckTile.isAnswerCorrect && currentCheckTile.isAnswered)
+        {
+            ForceMovePlayer(currentCheckTile.destinationIndex);
+        }
+    }
+
+    void CheckSoal()
+    {
+        if (!currentCheckTile.isAnswered && (!_playerFollowPath.isForcedMove && !_playerFollowPath.isMoveAllowed) &&
+            !_playerFollowPath.wasForcedMove)
         {
             soalContainer.SetActive(true);
+            _soalController.GetSoal();
         }
+        else
+        {
+            CheckTile();
+        }
+    }
+
+    public void ColorBoard(bool answer)
+    {
+        if (answer)
+        {
+            Instantiate(correctTile, currentCheckTile.transform.position, Quaternion.identity, colorBoard.transform);
+        }
+        else
+        {
+            Instantiate(incorrectTile, currentCheckTile.transform.position, Quaternion.identity, colorBoard.transform);
+        }    
     }
 
     public void MovePlayer()
     {
-        _playerFollowPath.moveAllowed = true;
+        _playerFollowPath.isMoveAllowed = true;
+        _playerFollowPath.wasForcedMove = false;
     }
 
-    public void isPencetTrue()
+    public void ForceMovePlayer(int destination)
     {
-        soalContainer.SetActive(false);
+        _playerFollowPath.isForcedMove = true;
+        _playerFollowPath.wasForcedMove = true;
+        diceSideThrown = 0;
+        _playerFollowPath.currentDestinationIndex = destination;
+        _playerFollowPath.currentWaypointIndex = destination;
+        playerStartWaypoint = destination;
+        playerEndWaypoint = destination;
+    }
+
+    void CalculateStageClear()
+    {
+        winWindow.SetActive(true);
+        isGameOver = true;
     }
 }

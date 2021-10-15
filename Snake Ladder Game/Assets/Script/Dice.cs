@@ -10,6 +10,10 @@ public class Dice : MonoBehaviour {
 
     private GameObject diceText;
     public GameControl _gc;
+    public FollowThePath _fp;
+
+    public int diceMin;
+    public int diceMax;
 
     // Use this for initialization
     private void Start () {
@@ -19,9 +23,15 @@ public class Dice : MonoBehaviour {
         diceText = GameObject.Find("Dice Text");
     }
 
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //    if (!_gc.isGameOver && coroutineAllowed)
+    //        StartCoroutine(RollTheDice());
+    //}
+
+    public void ButtonAcakAngka()
     {
-        if (!_gc.gameOver && coroutineAllowed)
+        if (!_gc.isGameOver && coroutineAllowed && !_fp.isMoveAllowed && !_fp.isForcedMove)
             StartCoroutine(RollTheDice());
     }
 
@@ -31,15 +41,15 @@ public class Dice : MonoBehaviour {
         int randomDiceSide = 0;
         for (int i = 0; i <= 20; i++)
         {
-            randomDiceSide = Random.Range(0, 6);
-            rend.sprite = diceSides[randomDiceSide];
+            randomDiceSide = Random.Range(diceMin, diceMax);
+            //rend.sprite = diceSides[randomDiceSide];
 
-            diceText.GetComponent<Text>().text = (randomDiceSide+1).ToString();
+            diceText.GetComponent<Text>().text = (randomDiceSide).ToString();
 
             yield return new WaitForSeconds(0.05f);
         }
 
-        _gc.diceSideThrown = randomDiceSide + 1;
+        _gc.diceSideThrown = randomDiceSide;
         
         _gc.MovePlayer();
 
