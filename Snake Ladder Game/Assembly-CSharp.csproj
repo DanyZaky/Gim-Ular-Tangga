@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\ButtonAturAngka.cs" />
     <Compile Include="Assets\Script\Dice.cs" />
     <Compile Include="Assets\Script\FollowThePath.cs" />
     <Compile Include="Assets\Script\GameControl.cs" />

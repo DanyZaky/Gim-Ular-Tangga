@@ -31,7 +31,7 @@ public class Dice : MonoBehaviour {
 
     public void ButtonAcakAngka()
     {
-        if (!_gc.isGameOver && coroutineAllowed && !_fp.isMoveAllowed && !_fp.isForcedMove)
+        if (!_gc.isGameOver && !_fp.isMoveAllowed && !_fp.isForcedMove)
             StartCoroutine(RollTheDice());
     }
 
@@ -52,7 +52,5 @@ public class Dice : MonoBehaviour {
         _gc.diceSideThrown = randomDiceSide;
         
         _gc.MovePlayer();
-
-        coroutineAllowed = true;
     }
 }

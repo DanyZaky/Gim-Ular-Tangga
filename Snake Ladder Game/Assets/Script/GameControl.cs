@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class GameControl : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class GameControl : MonoBehaviour {
     public int playerEndWaypoint = 0;
     public int points;
 
+    public bool reverse;
     public bool isGameOver = false;
 
     private void Awake()
@@ -49,14 +51,33 @@ public class GameControl : MonoBehaviour {
         {
             diceSideThrown = 0;
         }
-        else if (playerEndWaypoint >= waypoints.Length)
+        else if (playerEndWaypoint > waypoints.Length)
         {
+            int leftover = waypoints.Length - diceSideThrown;
             playerEndWaypoint = waypoints.Length;
-            EndWaypoint();
-            if (currentCheckTile.isAnswered && isGameOver)
+            FallBackEndWaypoint();
+            if (reverse)
             {
-                CalculateStageClear();
+                playerEndWaypoint = leftover;
+                EndWaypoint();
             }
+
+            //int leftover = waypoints.Length - diceSideThrown;
+            //ForceMovePlayer(waypoints.Length);
+            //FallBackEndWaypoint();
+            //if (reverse)
+            //{
+            //    ForceMovePlayer(leftover);
+            //    EndWaypoint();
+            //}
+
+            //DEFAULT
+            //playerEndWaypoint = waypoints.Length;
+            //EndWaypoint();
+            //if (currentCheckTile.isAnswered && isGameOver)
+            //{
+            //    CalculateStageClear();
+            //}
         }
         else
         {
@@ -70,10 +91,19 @@ public class GameControl : MonoBehaviour {
         {
             _playerFollowPath.isMoveAllowed = false;
             _playerFollowPath.isForcedMove = false;
+            reverse = false;
             diceSideThrown = 0;
             playerStartWaypoint = playerEndWaypoint;
             currentCheckTile = waypoints[playerEndWaypoint - 1].GetComponent<Petak>();
             CheckSoal();
+        }
+    }
+
+    void FallBackEndWaypoint()
+    {
+        if (_playerFollowPath.transform.position == waypoints[waypoints.Length - 1].transform.position)
+        {
+            reverse = true;
         }
     }
 
@@ -135,6 +165,5 @@ public class GameControl : MonoBehaviour {
     void CalculateStageClear()
     {
         winWindow.SetActive(true);
-        isGameOver = true;
     }
 }

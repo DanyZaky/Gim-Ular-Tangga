@@ -34,14 +34,24 @@ public class FollowThePath : MonoBehaviour {
 
     private void Move()
     {
-        if (currentWaypointIndex < waypoints.Length)
+        if (currentWaypointIndex < waypoints.Length && !_gc.reverse)
         {
             transform.position = Vector2.MoveTowards(transform.position,
             waypoints[currentWaypointIndex].transform.position,
             moveSpeed * Time.deltaTime);
-            if (transform.position == waypoints[currentWaypointIndex].transform.position)
+            if (transform.position == waypoints[currentWaypointIndex].transform.position && currentWaypointIndex < waypoints.Length - 1)
             {
                 currentWaypointIndex += 1;
+            }
+        }
+        else if (_gc.reverse)
+        {            
+            transform.position = Vector2.MoveTowards(transform.position,
+            waypoints[currentWaypointIndex].transform.position,
+            moveSpeed * Time.deltaTime);
+            if (transform.position == waypoints[currentWaypointIndex].transform.position && currentWaypointIndex != _gc.playerEndWaypoint - 1)
+            {
+                currentWaypointIndex -= 1;
             }
         }
     }

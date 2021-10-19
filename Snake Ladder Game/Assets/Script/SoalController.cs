@@ -71,7 +71,7 @@ public class SoalController: MonoBehaviour
 
         if (CheckIsLastSoal())
         {
-            _gc.isGameOver = true;
+            //_gc.isGameOver = true;
         }
         else
         {
@@ -98,7 +98,7 @@ public class SoalController: MonoBehaviour
 
     bool CheckIsLastSoal()
     {
-        if (_gc.playerEndWaypoint >= _gc.waypoints.Length)
+        if (_gc.playerEndWaypoint == _gc.waypoints.Length)
         {
             return true;
         } else
