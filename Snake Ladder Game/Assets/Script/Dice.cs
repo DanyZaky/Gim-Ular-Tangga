@@ -6,7 +6,7 @@ public class Dice : MonoBehaviour {
 
     private Sprite[] diceSides;
     private SpriteRenderer rend;
-    private bool coroutineAllowed = true;
+    public static bool coroutineAllowed = true;
 
     private GameObject diceText;
     public GameControl _gc;
@@ -31,8 +31,11 @@ public class Dice : MonoBehaviour {
 
     public void ButtonAcakAngka()
     {
-        if (!_gc.isGameOver && !_fp.isMoveAllowed && !_fp.isForcedMove)
+        if (!_gc.isGameOver && coroutineAllowed && !_fp.isMoveAllowed && !_fp.isForcedMove)
+        {
+            SoundSystem.Instance.PlaySFX("SFXHit");
             StartCoroutine(RollTheDice());
+        }            
     }
 
     private IEnumerator RollTheDice()
@@ -46,11 +49,13 @@ public class Dice : MonoBehaviour {
 
             diceText.GetComponent<Text>().text = (randomDiceSide).ToString();
 
+            //SoundSystem.Instance.PlaySFX("SFXHit");
             yield return new WaitForSeconds(0.05f);
         }
 
         _gc.diceSideThrown = randomDiceSide;
         
         _gc.MovePlayer();
+        coroutineAllowed = true;
     }
 }

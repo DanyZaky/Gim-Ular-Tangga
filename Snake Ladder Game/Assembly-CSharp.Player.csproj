@@ -670,6 +670,8 @@
     <Compile Include="Assets\Script\MainMenuController.cs" />
     <Compile Include="Assets\Script\Petak.cs" />
     <Compile Include="Assets\Script\SoalController.cs" />
+    <Compile Include="Assets\Script\SoundSystem.cs" />
+    <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\UIController.cs" />
   </ItemGroup>
   <ItemGroup>

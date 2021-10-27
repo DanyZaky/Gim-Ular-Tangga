@@ -10,11 +10,14 @@ public class SoalController: MonoBehaviour
     public string correctAnswer;
     public TextMeshProUGUI textSoal;
     public GameControl _gc;
+    public GameObject imgSoal;
 
     public string[] kunciJawaban;
+    int[] imgSoalIndex;
 
     private void Awake()
     {
+        imgSoalIndex = new int[] {10, 18, 23 };
         GetKunciJawaban();
     }
 
@@ -33,6 +36,13 @@ public class SoalController: MonoBehaviour
         currentAnswer = _gc.playerStartWaypoint.ToString();
         correctAnswer = kunciJawaban[currentIndexSoal - 1];
         textSoal.text = txt;
+        foreach (int element in imgSoalIndex)
+        {
+            if (currentIndexSoal == element)
+            {
+                imgSoal.SetActive(true);
+            }
+        }
     }
 
     void GetKunciJawaban()
@@ -53,10 +63,13 @@ public class SoalController: MonoBehaviour
     public void ButtonAnswer(string answer)
     {
         currentAnswer += answer;
-        gameObject.SetActive(false);
+        imgSoal.SetActive(false);
+        _gc._gpc.CloseSoalWindow();
         _gc.currentCheckTile.isAnswered = true;
+        _gc.isSoalShown = false;
         if (CheckAnswer())
         {
+            SoundSystem.Instance.PlaySFX("SFXCorrect");
             _gc.points += 10;
             _gc.currentCheckTile.isAnswerCorrect = true;
             _gc.ColorBoard(true);
@@ -64,6 +77,7 @@ public class SoalController: MonoBehaviour
         }
         else
         {
+            SoundSystem.Instance.PlaySFX("SFXIncorrect");
             _gc.currentCheckTile.isAnswerCorrect = false;
             _gc.ColorBoard(false);
             print($"Soal {currentIndexSoal}, jawab {currentAnswer}, kunci {correctAnswer} : Incorrect");

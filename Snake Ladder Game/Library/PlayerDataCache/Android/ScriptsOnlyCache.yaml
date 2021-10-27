@@ -10,6 +10,8 @@ ScriptsOnlyBuild:
     - MainMenuController
     - Petak
     - SoalController
+    - SoundSystem
+    - Timer
     DOTween.dll:
     - DG.Tweening.Core.DOTweenSettings
     Unity.2D.Animation.Editor.dll:
@@ -63,42 +65,50 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11296}
+      Script: {instanceID: 11298}
     - Class: 114
-      Script: {instanceID: 11592}
+      Script: {instanceID: 11594}
     - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 11648}
     - Class: 114
-      Script: {instanceID: 12314}
+      Script: {instanceID: 12316}
     - Class: 114
-      Script: {instanceID: 12834}
+      Script: {instanceID: 12568}
     - Class: 114
-      Script: {instanceID: 13034}
+      Script: {instanceID: 12838}
     - Class: 114
-      Script: {instanceID: 13124}
+      Script: {instanceID: 13038}
     - Class: 114
-      Script: {instanceID: 13384}
+      Script: {instanceID: 13128}
     - Class: 114
       Script: {instanceID: 13388}
     - Class: 114
-      Script: {instanceID: 13408}
+      Script: {instanceID: 13392}
     - Class: 114
-      Script: {instanceID: 13706}
+      Script: {instanceID: 13412}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 13710}
     - Class: 114
-      Script: {instanceID: 13874}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 13946}
+      Script: {instanceID: 13878}
     - Class: 114
-      Script: {instanceID: 14430}
+      Script: {instanceID: 13950}
     - Class: 114
-      Script: {instanceID: 15578}
+      Script: {instanceID: 13990}
+    - Class: 114
+      Script: {instanceID: 14438}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -130,26 +140,30 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11296}
+      Script: {instanceID: 11298}
     - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 12316}
     - Class: 114
-      Script: {instanceID: 12314}
+      Script: {instanceID: 13388}
     - Class: 114
-      Script: {instanceID: 13384}
+      Script: {instanceID: 13710}
     - Class: 114
-      Script: {instanceID: 13706}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 14286}
     - Class: 114
-      Script: {instanceID: 14278}
-    - Class: 114
-      Script: {instanceID: 14430}
+      Script: {instanceID: 14438}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -157,6 +171,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -179,40 +197,52 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11296}
+      Script: {instanceID: 11298}
     - Class: 114
-      Script: {instanceID: 11592}
+      Script: {instanceID: 11594}
     - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 11648}
     - Class: 114
-      Script: {instanceID: 12314}
+      Script: {instanceID: 12316}
     - Class: 114
-      Script: {instanceID: 12366}
+      Script: {instanceID: 12368}
     - Class: 114
-      Script: {instanceID: 12790}
+      Script: {instanceID: 12794}
     - Class: 114
-      Script: {instanceID: 12888}
+      Script: {instanceID: 12892}
     - Class: 114
-      Script: {instanceID: 13034}
+      Script: {instanceID: 13038}
     - Class: 114
-      Script: {instanceID: 13326}
+      Script: {instanceID: 13330}
     - Class: 114
-      Script: {instanceID: 13384}
+      Script: {instanceID: 13388}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 13408}
     - Class: 114
-      Script: {instanceID: 13706}
+      Script: {instanceID: 13710}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 14094}
+      Script: {instanceID: 14100}
     - Class: 114
-      Script: {instanceID: 14430}
+      Script: {instanceID: 14128}
+    - Class: 114
+      Script: {instanceID: 14438}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -220,6 +250,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -472,6 +504,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 46d5704263351649e6168461819a8dfa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Timer
+  - hash:
+      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -490,7 +528,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: cb9345ff253344733c05541787ad7380
+      Hash: d126d6c839254d380f11811359c699e9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenuController
@@ -544,7 +582,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: c96f5bb22cf1fa9f0058f5c3bb7e7ae9
+      Hash: 91bd040156ffcc32f5a36834933eaf40
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FollowThePath
@@ -592,7 +630,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 839619f3535c84993ab6e4b240fb687d
+      Hash: b69e2a47996159538e271bb846b9f89d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SoalController
@@ -658,16 +696,22 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 13358d7e88a417aa574a2a27da52bd28
+      Hash: ced52dbe70abcc8ab769c04e1559081b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameplayController
   - hash:
       serializedVersion: 2
-      Hash: 4690ba1fbdf6d245acce0f6abe8a099c
+      Hash: afb041fbac9bfe5deaed7774ab70838c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameControl
+  - hash:
+      serializedVersion: 2
+      Hash: 9f3293fb3c0fed6d7c6e99b0799ff836
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonAturAngka
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -680,6 +724,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 91cd06a0b775b388760a5a12496bcb54
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundSystem
   - hash:
       serializedVersion: 2
       Hash: 8cd1cbba27f3cb1717254f668e9e0d5a
@@ -782,12 +832,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 9f3293fb3c0fed6d7c6e99b0799ff836
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ButtonAturAngka
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainMenuScene.unity

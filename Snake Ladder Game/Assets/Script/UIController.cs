@@ -44,5 +44,6 @@ public class UIController : MonoBehaviour
     {
         PlayerPrefs.SetString("NewScene", theScene);
         SceneManager.LoadScene("LoadingScene");
+        Time.timeScale = 1f;
     }
 }

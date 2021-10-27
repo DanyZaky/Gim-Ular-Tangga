@@ -4,6 +4,7 @@ using UnityEngine;
 public class FollowThePath : MonoBehaviour {
 
     public GameControl _gc;
+    public Transform startingWaypoint;
     public Transform[] waypoints;
 
     [SerializeField]
@@ -17,7 +18,7 @@ public class FollowThePath : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start () {
-        transform.position = new Vector2(-10, -3);
+        transform.position = startingWaypoint.position;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +35,7 @@ public class FollowThePath : MonoBehaviour {
 
     private void Move()
     {
-        if (currentWaypointIndex < waypoints.Length && !_gc.reverse)
+        if (currentWaypointIndex < waypoints.Length && !_gc.isReverse)
         {
             transform.position = Vector2.MoveTowards(transform.position,
             waypoints[currentWaypointIndex].transform.position,
@@ -44,7 +45,7 @@ public class FollowThePath : MonoBehaviour {
                 currentWaypointIndex += 1;
             }
         }
-        else if (_gc.reverse)
+        else if (_gc.isReverse)
         {            
             transform.position = Vector2.MoveTowards(transform.position,
             waypoints[currentWaypointIndex].transform.position,

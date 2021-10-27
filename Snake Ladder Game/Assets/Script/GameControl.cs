@@ -3,14 +3,16 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
-public class GameControl : MonoBehaviour {
+public class GameControl : UIController {
 
     private GameObject player;
     private FollowThePath _playerFollowPath;
     private SoalController _soalController;
+    public GameplayController _gpc;
 
     public Transform[] waypoints;
     public GameObject soalContainer, winWindow;
+    public Text winText;
     public Petak currentCheckTile;
     public TextMeshProUGUI textPoints;
     public GameObject incorrectTile;
@@ -22,8 +24,9 @@ public class GameControl : MonoBehaviour {
     public int playerEndWaypoint = 0;
     public int points;
 
-    public bool reverse;
+    public bool isReverse;
     public bool isGameOver = false;
+    public bool isSoalShown;
 
     private void Awake()
     {
@@ -53,10 +56,10 @@ public class GameControl : MonoBehaviour {
         }
         else if (playerEndWaypoint > waypoints.Length)
         {
-            int leftover = waypoints.Length - diceSideThrown;
+            int leftover = waypoints.Length - (playerEndWaypoint - waypoints.Length) ;
             playerEndWaypoint = waypoints.Length;
             FallBackEndWaypoint();
-            if (reverse)
+            if (isReverse)
             {
                 playerEndWaypoint = leftover;
                 EndWaypoint();
@@ -91,7 +94,7 @@ public class GameControl : MonoBehaviour {
         {
             _playerFollowPath.isMoveAllowed = false;
             _playerFollowPath.isForcedMove = false;
-            reverse = false;
+            isReverse = false;
             diceSideThrown = 0;
             playerStartWaypoint = playerEndWaypoint;
             currentCheckTile = waypoints[playerEndWaypoint - 1].GetComponent<Petak>();
@@ -99,11 +102,12 @@ public class GameControl : MonoBehaviour {
         }
     }
 
+
     void FallBackEndWaypoint()
     {
         if (_playerFollowPath.transform.position == waypoints[waypoints.Length - 1].transform.position)
         {
-            reverse = true;
+            isReverse = true;
         }
     }
 
@@ -124,8 +128,13 @@ public class GameControl : MonoBehaviour {
         if (!currentCheckTile.isAnswered && (!_playerFollowPath.isForcedMove && !_playerFollowPath.isMoveAllowed) &&
             !_playerFollowPath.wasForcedMove)
         {
-            soalContainer.SetActive(true);
-            _soalController.GetSoal();
+            //soalContainer.SetActive(true);
+            if (!isSoalShown)
+            {
+                _gpc.OpenSoalWindow();
+                _soalController.GetSoal();
+                isSoalShown = true;
+            }            
         }
         else
         {
@@ -159,11 +168,61 @@ public class GameControl : MonoBehaviour {
         _playerFollowPath.currentDestinationIndex = destination;
         _playerFollowPath.currentWaypointIndex = destination;
         playerStartWaypoint = destination;
-        playerEndWaypoint = destination;
+        playerEndWaypoint = destination; 
     }
 
-    void CalculateStageClear()
+    public void CalculateStageClear()
     {
-        winWindow.SetActive(true);
+        isGameOver = true;
+        _gpc.OpenWinWindow();        
+        string text2 = "";
+        int select = Random.Range(0, 4);
+        string text;
+        if (points >= 70)
+        {
+            SoundSystem.Instance.PlaySFX("SFXWin");
+            if (select == 1)
+            {
+                text = "Luar biasa! Point kamu";
+            }
+            else if (select == 2)
+            {
+                text = "Hebat! Point kamu";
+            }
+            else if (select == 3)
+            {
+                text = "Menakjubkan! Point kamu";
+            }
+            else
+            {
+                text = "Bagus! Point kamu";
+            }
+
+        }
+        else
+        {
+            SoundSystem.Instance.PlaySFX("SFXLose");
+            if (select == 1)
+            {
+                text = "Sayang sekali. Point kamu";
+                text2 = " Masih bisa mencoba.";
+            }
+            else if (select == 2)
+            {
+                text = "Coba lagi. Point kamu";
+                text2 = " Kamu masih bisa.";
+            }
+            else if (select == 3)
+            {
+                text = "Masih sedikit. Point kamu";
+                text2 = " Tingkatkan lagi belajarmu.";
+            }
+            else
+            {
+                text = "Kamu pasti bisa. Point kamu";
+                text2 = " Masih bisa dikejar lagi.";
+            }
+        }
+        winText.text = text + " " + points + "." + text2;
     }
 }
