@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yakin ingin Kelua?
+  m_Text: Yakin ingin keluar?
 --- !u!222 &588507523
 CanvasRenderer:
   m_ObjectHideFlags: 0
