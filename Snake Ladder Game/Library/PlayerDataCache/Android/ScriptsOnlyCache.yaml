@@ -69,6 +69,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -107,6 +111,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13950}
     - Class: 114
       Script: {instanceID: 13990}
+    - Class: 114
+      Script: {instanceID: 14128}
     - Class: 114
       Script: {instanceID: 14438}
     - Class: 115
@@ -528,7 +534,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: d126d6c839254d380f11811359c699e9
+      Hash: d712934ef780f76f0b882e289e89a532
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenuController
@@ -630,7 +636,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: b69e2a47996159538e271bb846b9f89d
+      Hash: 3479d23b77a9a09e5b6cedf9bad7311b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SoalController
@@ -696,7 +702,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: ced52dbe70abcc8ab769c04e1559081b
+      Hash: 3d5fc39a199ad56c6050b73fb7f1876a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameplayController
@@ -837,4 +843,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenuScene.unity
   - Assets/Scenes/GameplayScene.unity
   - Assets/Scenes/LoadingScene.unity
-  playerPath: F:/Unity/GimUlarTangga.apk
+  playerPath: F:/Unity/GameUlarTangga2.apk

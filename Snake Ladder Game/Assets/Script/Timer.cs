@@ -30,11 +30,14 @@ public class Timer : MonoBehaviour
 
     void CheckObjective()
     {
-        if ((timeLeft <= 0  || _gc.points > 70) && isTimerStart)
+        if ((timeLeft <= 0  || _gc.points > 70))
         {
             isTimerStart = false;
             timeLeft = 0;
-            _gc.CalculateStageClear();
+            if (!_gc.isSoalShown && !_gc.isGameOver)
+            {
+                _gc.CalculateStageClear();
+            }            
         }
     }
 
@@ -50,14 +53,19 @@ public class Timer : MonoBehaviour
     {
         mins = (int)(timeLeft / 60);
         secs = (int)(timeLeft % 60);
-        if (secs < 10)
-        {
-            timeDisplay = "Waktu: " + "0" + mins + ":" + "0" + secs;
-        }
-        else
-        {
-            timeDisplay = "Waktu: " + "0" + mins + ":" + secs;
-        }       
+        string ssecs;
+        string smins;
+        if (secs < 10){ ssecs = "0" + secs; } else { ssecs = secs.ToString(); }
+        if (mins < 10){ smins = "0" + mins; } else { smins = mins.ToString(); }
+        timeDisplay = "Waktu: " + smins + ":" + ssecs;
+        //if (secs < 10)
+        //{
+        //    timeDisplay = "Waktu: " + "0" + mins + ":" + "0" + secs;
+        //}
+        //else
+        //{
+        //    timeDisplay = "Waktu: " + "0" + mins + ":" + secs;
+        //}       
         timerText.text = timeDisplay;
     }
 }

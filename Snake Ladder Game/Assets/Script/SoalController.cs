@@ -10,7 +10,7 @@ public class SoalController: MonoBehaviour
     public string correctAnswer;
     public TextMeshProUGUI textSoal;
     public GameControl _gc;
-    public GameObject imgSoal;
+    public GameObject imgSoal, imgCorrect, imgIncorrect;
 
     public string[] kunciJawaban;
     int[] imgSoalIndex;
@@ -62,14 +62,17 @@ public class SoalController: MonoBehaviour
 
     public void ButtonAnswer(string answer)
     {
+        SoundSystem.Instance.PlaySFX("SFXHit");
         currentAnswer += answer;
         imgSoal.SetActive(false);
         _gc._gpc.CloseSoalWindow();
         _gc.currentCheckTile.isAnswered = true;
-        _gc.isSoalShown = false;
+        //_gc.isSoalShown = false;
         if (CheckAnswer())
         {
             SoundSystem.Instance.PlaySFX("SFXCorrect");
+            imgCorrect.SetActive(true);
+            _gc._gpc.OnBGPanel();
             _gc.points += 10;
             _gc.currentCheckTile.isAnswerCorrect = true;
             _gc.ColorBoard(true);
@@ -78,6 +81,8 @@ public class SoalController: MonoBehaviour
         else
         {
             SoundSystem.Instance.PlaySFX("SFXIncorrect");
+            imgIncorrect.SetActive(true);
+            _gc._gpc.OnBGPanel();
             _gc.currentCheckTile.isAnswerCorrect = false;
             _gc.ColorBoard(false);
             print($"Soal {currentIndexSoal}, jawab {currentAnswer}, kunci {correctAnswer} : Incorrect");

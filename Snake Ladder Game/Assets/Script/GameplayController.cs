@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameplayController : UIController
 {
+    public GameControl _gc;
     public TextMeshProUGUI playerName;
-    public RectTransform pauseWindow, soalWindow, startWindow, winWindow, confirmWindow;
+    public RectTransform pauseWindow, soalWindow, startWindow, winWindow, confirmWindow, confirmWindow2;
     public GameObject panelBG;
 
     private void Awake()
@@ -66,12 +67,12 @@ public class GameplayController : UIController
         StartCoroutine(AnimationWideIn(soalWindow, 0.15f));
     }
 
-    void OnBGPanel()
+    public void OnBGPanel()
     {
         panelBG.SetActive(true);
     }
 
-    void OffBGPanel()
+    public void OffBGPanel()
     {
         panelBG.SetActive(false);
     }
@@ -79,14 +80,33 @@ public class GameplayController : UIController
     public void OpenConfirmWindow()
     {
         SoundSystem.Instance.PlaySFX("SFXHit");
-        OnBGPanel();
+        //OnBGPanel();
         StartCoroutine(AnimationWideOut(confirmWindow, 0.15f));
     }
 
     public void CloseConfirmWindow()
     {
         SoundSystem.Instance.PlaySFX("SFXHit");
-        OffBGPanel();
+        //OffBGPanel();
         StartCoroutine(AnimationWideIn(confirmWindow, 0.15f));
+    }
+
+    public void OpenConfirmWindow2()
+    {
+        SoundSystem.Instance.PlaySFX("SFXHit");
+        //OnBGPanel();
+        StartCoroutine(AnimationWideOut(confirmWindow2, 0.15f));
+    }
+
+    public void CloseConfirmWindow2()
+    {
+        SoundSystem.Instance.PlaySFX("SFXHit");
+        //OffBGPanel();
+        StartCoroutine(AnimationWideIn(confirmWindow2, 0.15f));
+    }
+
+    public void CloseSoalImg()
+    {
+        _gc.isSoalShown = false;
     }
 }

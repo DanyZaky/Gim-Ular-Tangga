@@ -10,7 +10,7 @@ public class MainMenuController : UIController
     public InputField _iField;
     public bool isNameAllowed;
     public GameObject warningWindow, inputWindow, bGPanel;
-    public RectTransform peraturanWindow, nicknameWindow, confirmWindow;
+    public RectTransform temaWindow, petunjukWindow, tujuanWindow, nicknameWindow, confirmWindow;
 
     private void Update()
     {
@@ -54,19 +54,37 @@ public class MainMenuController : UIController
         //}        
     }
 
+    public void ButtonWindowTema()
+    {
+        SoundSystem.Instance.PlaySFX("SFXHit");
+        StartCoroutine(AnimationWideIn(temaWindow, 0.15f));
+        StartCoroutine(AnimationWideOut(petunjukWindow, 0.15f));
+        
+    }
+
+    public void ButtonWindowPetunjuk()
+    {
+        SoundSystem.Instance.PlaySFX("SFXHit");
+        StartCoroutine(AnimationWideIn(petunjukWindow, 0.15f));
+        StartCoroutine(AnimationWideOut(tujuanWindow, 0.15f));
+        
+    }
+
+    public void ButtonWindowTujuan()
+    {
+        SoundSystem.Instance.PlaySFX("SFXHit");
+        StartCoroutine(AnimationWideIn(tujuanWindow, 0.15f));
+        StartCoroutine(AnimationWideOut(nicknameWindow, 0.15f));
+    }
+
     public void ButtonWindowNickname()
     {
         SoundSystem.Instance.PlaySFX("SFXHit");
-        StartCoroutine(AnimationWideOut(nicknameWindow, 0.15f));
-        StartCoroutine(AnimationWideIn(peraturanWindow, 0.15f));
+        StartCoroutine(AnimationWideIn(nicknameWindow, 0.15f));
+        StartCoroutine(AnimationWideOut(petunjukWindow, 0.15f));
     }
 
-    public void ButtonWindowPeraturan()
-    {
-        SoundSystem.Instance.PlaySFX("SFXHit");
-        StartCoroutine(AnimationWideOut(peraturanWindow, 0.15f));
-        StartCoroutine(AnimationWideIn(nicknameWindow, 0.15f));
-    }
+    
 
     public void OpenConfirmWindow()
     {
